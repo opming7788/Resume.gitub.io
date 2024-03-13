@@ -1,0 +1,177 @@
+header h1 {
+  width: 70%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 5px, solid aqua;
+  background-color: aquamarine;
+  color: black;
+  font-size: 250%;
+  text-align: center;
+  line-height: 1;
+  border-radius: 10px;
+  text-shadow: 1px 1px 2px cadetblue;
+  box-shadow: 0 0 10px white;
+  background-image: linear-gradient(to bottom, khaki, darkkhaki);
+  font-family: "Limelight", cursive;
+}
+
+.myeffort_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.myeffort {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: rgb(230, 140, 0);
+}
+
+.My-creation {
+  display: flex;
+  justify-content: center; /* 將按鈕置中 */
+  margin-top: 20px; /* 設定按鈕上方的間距 */
+}
+
+.My-creation button {
+  margin: 0 50px; /* 設定按鈕之間的間距 */
+  padding: 10px 20px; /* 設定按鈕的內邊距 */
+  font-size: 16px; /* 設定按鈕文字大小 */
+  background-color: #4caf50; /* 設定按鈕背景顏色 */
+  color: white; /* 設定按鈕文字顏色 */
+  border: none; /* 移除按鈕邊框 */
+  border-radius: 5px; /* 設定按鈕圓角 */
+  cursor: pointer; /* 設定滑鼠懸停時顯示手型指示 */
+}
+
+.My-creation button:hover {
+  background-color: red; /* 滑鼠懸停時更改按鈕背景顏色 */
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-size: 24px;
+  background-color: red;
+}
+
+.name h2 {
+  color: rgb(230, 140, 0);
+  font-size: 80px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.name p {
+  color: rgb(230, 140, 0);
+  font-size: 40px;
+}
+
+.container {
+  width: 70%;
+  margin: 50px auto;
+  background-color: white;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+}
+
+.avatar img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 0px;
+  margin-right: 30px;
+}
+
+.info li {
+  margin: 10px 20px;
+}
+
+.info i {
+  margin-right: 10px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+hr {
+  background-color: rgb(230, 140, 0);
+  border: 2px solid rgb(230, 140, 0);
+  margin: 50px 0px;
+}
+
+.title {
+  width: 30%;
+}
+
+.text {
+  width: 80%;
+  line-height: 1.3em;
+  text-align: justify;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: rgb(230, 140, 0);
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgb(230, 140, 0);
+}
+
+.quote q {
+  font-family: serif;
+  font-size: 28px;
+}
+
+.content li {
+  margin: 10px 0px;
+}
+
+.content span {
+  color: rgb(230, 140, 0);
+}
+
+.skills .text {
+  display: flex;
+}
+
+.skills .text ul {
+  width: 50%;
+}
+
+.footer ul {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+
+.footer li i {
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  margin: 0px 20px;
+}
+
+.footer li i:hover {
+  color: rgb(82, 82, 82);
+}

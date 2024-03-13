@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <h2>模擬一個小球在重力場下的運動</h2>
+      <canvas
+        id="myCanvas"
+        width="350"
+        height="500"
+        style="border: 1px solid #000000"
+      ></canvas>
+    </div>
+    <button
+      type="button"
+      style="
+        padding: 0.25rem 0.5rem;
+        background-color: yellow;
+        font-size: 1.15rem;
+        display: block;
+        margin-top: 15px;
+        cursor: pointer;
+      "
+      onclick="window.location.reload();"
+    >
+      重新開始
+    </button>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const context = canvas.getContext("2d");
+
+      const CANVAS_WIDTH = 350;
+      const CANVAS_HEIGHT = 500;
+      const Ball_R = 20;
+      let dt = 0.15;
+      let gravity = 9.8;
+      let COR = 0.9; // coefficient of restitution
+      let velocity = 60;
+      let dir_Angle = Math.random() * 2 * Math.PI;
+      let vx = velocity * Math.cos(dir_Angle);
+      let vy = velocity * Math.sin(dir_Angle);
+      let dSx = 0;
+      let dSy = 0;
+      let collision_flag_y = true;
+      let collision_flag_x = true;
+
+      function drawBall(x, y, radius, color) {
+        context.beginPath();
+        context.arc(x + radius, y + radius, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = color;
+        context.fill();
+      }
+
+      function animate() {
+        context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        drawBall(
+          CANVAS_WIDTH / 3 + dSx,
+          CANVAS_HEIGHT / 6 + dSy,
+          Ball_R,
+          "red"
+        );
+
+        dSx += vx * dt;
+        dSy += vy * dt + 0.5 * gravity * dt ** 2;
+        vy += gravity * dt;
+
+        if (
+          CANVAS_HEIGHT / 6 + dSy + 2 * Ball_R >= CANVAS_HEIGHT &&
+          collision_flag_y
+        ) {
+          vy = -vy * COR;
+          collision_flag_y = false;
+          if (Math.abs(vy) < 2) {
+            vy = 0;
+            gravity = 0;
+          }
+        } else {
+          collision_flag_y = true;
+        }
+
+        if (
+          (CANVAS_WIDTH / 3 + dSx < 0 ||
+            CANVAS_WIDTH / 3 + dSx + 2 * Ball_R > CANVAS_WIDTH) &&
+          collision_flag_x
+        ) {
+          vx = -vx * COR;
+          collision_flag_x = false;
+        } else {
+          collision_flag_x = true;
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
