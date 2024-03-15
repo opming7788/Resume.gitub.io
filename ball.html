@@ -2,7 +2,7 @@
 <html>
   <body>
     <div>
-      <h2>模擬一個小球在重力場下的運動</h2>
+      <h2>模擬一個小球在重力場下的運動(恢復係數(COR)=0.9)</h2>
       <canvas
         id="myCanvas"
         width="350"
@@ -30,20 +30,21 @@
 
       const CANVAS_WIDTH = 350;
       const CANVAS_HEIGHT = 500;
-      const Ball_R = 20;
-      let dt = 0.15;
-      let gravity = 9.8;
+      const Ball_R = 20; //球的半徑
+      let dt = 0.15; //時間有限差分離散量
+      let gravity = 9.8; //重力加速度
       let COR = 0.9; // coefficient of restitution
-      let velocity = 60;
-      let dir_Angle = Math.random() * 2 * Math.PI;
-      let vx = velocity * Math.cos(dir_Angle);
-      let vy = velocity * Math.sin(dir_Angle);
-      let dSx = 0;
-      let dSy = 0;
-      let collision_flag_y = true;
-      let collision_flag_x = true;
+      let velocity = 60; //球初始速度
+      let dir_Angle = Math.random() * 2 * Math.PI; //球的拋射方向
+      let vx = velocity * Math.cos(dir_Angle); //球的x方向初始速度
+      let vy = velocity * Math.sin(dir_Angle); //球的y方向初始速度
+      let dSx = 0; //球的x方向位移
+      let dSy = 0; //球的y方向位移
+      let collision_flag_y = true; //用來避免球在地板發生碰撞後產生震盪現象
+      let collision_flag_x = true; //用來避免球在牆壁發生碰撞後產生震盪現象
 
       function drawBall(x, y, radius, color) {
+        //畫一顆球
         context.beginPath();
         context.arc(x + radius, y + radius, radius, 0, 2 * Math.PI, false);
         context.fillStyle = color;
@@ -51,6 +52,7 @@
       }
 
       function animate() {
+        //更新畫面
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBall(
           CANVAS_WIDTH / 3 + dSx,
@@ -64,26 +66,29 @@
         vy += gravity * dt;
 
         if (
+          //當球與地板發生碰撞時
           CANVAS_HEIGHT / 6 + dSy + 2 * Ball_R >= CANVAS_HEIGHT &&
           collision_flag_y
         ) {
           vy = -vy * COR;
           collision_flag_y = false;
           if (Math.abs(vy) < 2) {
+            //當y方向速度小於2時停止運動避免球沉入地板
             vy = 0;
             gravity = 0;
           }
         } else {
-          collision_flag_y = true;
+          collision_flag_y = true; //避免球在地板發生碰撞後產生震盪現象
         }
 
         if (
+          //當球與牆壁發生碰撞時
           (CANVAS_WIDTH / 3 + dSx < 0 ||
             CANVAS_WIDTH / 3 + dSx + 2 * Ball_R > CANVAS_WIDTH) &&
           collision_flag_x
         ) {
           vx = -vx * COR;
-          collision_flag_x = false;
+          collision_flag_x = false; //避免球在牆壁發生碰撞後產生震盪現象
         } else {
           collision_flag_x = true;
         }
