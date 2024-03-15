@@ -89,8 +89,8 @@ body {
 
 .avatar img {
   width: 250px;
-  height: 250px;
-  border-radius: 50%;
+  height: 333px;
+  border-radius: 30%;
   border: 0px;
   margin-right: 30px;
 }
